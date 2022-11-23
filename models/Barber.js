@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const BarberSchema = mongoose.Schema({
-  email: {
-    type: String,
+  id: {
+    type: Number,
     required: true,
   },
-  password: {
+  email: {
     type: String,
     required: true,
   },
@@ -17,16 +17,29 @@ const BarberSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  location: {
-    lat: {
-      type: Number,
-      required: true,
-    },
-    long: {
-      type: Number,
-      required: true,
-    },
+  gender: {
+    type: Boolean,
+    required:true
   },
+  phone: {
+    type: String,
+    required: true,
+  },
+  today: {
+    type: Boolean,
+    required: true
+  },
+  tomorrow:
+  {
+    type: Boolean,
+    required: true
+  },
+  nextDay:
+  {
+    type: Boolean,
+    required: true
+  },
+  
 });
 
 module.exports = mongoose.model("Barbers", BarberSchema);

@@ -16,12 +16,17 @@ router.get("/", async (req, res) => {
 
 //SUBMITS A BARBER
 router.post("/", async (req, res) => {
-    const barber = new Barber({
-        email: req.body.email,
-        password: req.body.password,
-        name: req.body.name,
-        address: req.body.address,
-        location: req.body.location,
+  const barber = new Barber({
+    id: req.body.id,
+    email: req.body.email,
+    name: req.body.name,
+    address: req.body.address,
+    gender: req.body.gender,
+    phone: req.body.phone,
+    today: req.body.today,
+    tomorrow: req.body.tomorrow,
+    nextDay: req.body.nextDay,
+    
   });
   try {
     const savedBarber = await barber.save();
@@ -55,7 +60,13 @@ router.patch("/:barberId", async (req, res) => {
   try {
     const updatedBarber = await Barber.updateOne(
       { _id: req.params.barberId },
-      { $set: { name: req.body.name } }
+      {
+        $set: {
+          today: req.body.today,
+          tomorrow: req.body.tomorrow,
+          nextDay: req.body.nextDay,
+        }
+      }
     );
     res.json(updatedBarber);
   } catch (err) {
